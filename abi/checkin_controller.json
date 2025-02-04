@@ -1,0 +1,238 @@
+[
+  {
+    "type": "impl",
+    "name": "CheckinControllerImpl",
+    "interface_name": "travio::interfaces::checkin_controller::ICheckinController"
+  },
+  {
+    "type": "struct",
+    "name": "core::byte_array::ByteArray",
+    "members": [
+      {
+        "name": "data",
+        "type": "core::array::Array::<core::bytes_31::bytes31>"
+      },
+      {
+        "name": "pending_word",
+        "type": "core::felt252"
+      },
+      {
+        "name": "pending_word_len",
+        "type": "core::integer::u32"
+      }
+    ]
+  },
+  {
+    "type": "struct",
+    "name": "core::integer::u256",
+    "members": [
+      {
+        "name": "low",
+        "type": "core::integer::u128"
+      },
+      {
+        "name": "high",
+        "type": "core::integer::u128"
+      }
+    ]
+  },
+  {
+    "type": "enum",
+    "name": "core::bool",
+    "variants": [
+      {
+        "name": "False",
+        "type": "()"
+      },
+      {
+        "name": "True",
+        "type": "()"
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "travio::interfaces::checkin_controller::ICheckinController",
+    "items": [
+      {
+        "type": "function",
+        "name": "add_spot",
+        "inputs": [
+          {
+            "name": "ipfs_hash",
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "checkin",
+        "inputs": [
+          {
+            "name": "spot_id",
+            "type": "core::integer::u256"
+          },
+          {
+            "name": "with_media",
+            "type": "core::bool"
+          },
+          {
+            "name": "friend_count",
+            "type": "core::integer::u256"
+          },
+          {
+            "name": "ipfs_hash",
+            "type": "core::byte_array::ByteArray"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "get_spot_manager",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_user_manager",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_checkin_history",
+        "inputs": [
+          {
+            "name": "user",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::array::Array::<(core::integer::u256, core::integer::u256, core::integer::u64, core::byte_array::ByteArray)>"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "type": "constructor",
+    "name": "constructor",
+    "inputs": [
+      {
+        "name": "spot_manager",
+        "type": "core::starknet::contract_address::ContractAddress"
+      },
+      {
+        "name": "user_manager",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::checkin_controller::CheckinController::SpotAdded",
+    "kind": "struct",
+    "members": [
+      {
+        "name": "user",
+        "type": "core::starknet::contract_address::ContractAddress",
+        "kind": "data"
+      },
+      {
+        "name": "spot_id",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "ipfs_hash",
+        "type": "core::byte_array::ByteArray",
+        "kind": "data"
+      },
+      {
+        "name": "points_earned",
+        "type": "core::integer::u256",
+        "kind": "data"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::checkin_controller::CheckinController::CheckIn",
+    "kind": "struct",
+    "members": [
+      {
+        "name": "user",
+        "type": "core::starknet::contract_address::ContractAddress",
+        "kind": "data"
+      },
+      {
+        "name": "spot_id",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "points_earned",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "streak_bonus",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "photo_bonus",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "friends_bonus",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "new_spot_bonus",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "ipfs_hash",
+        "type": "core::byte_array::ByteArray",
+        "kind": "data"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::checkin_controller::CheckinController::Event",
+    "kind": "enum",
+    "variants": [
+      {
+        "name": "SpotAdded",
+        "type": "travio::checkin_controller::CheckinController::SpotAdded",
+        "kind": "nested"
+      },
+      {
+        "name": "CheckIn",
+        "type": "travio::checkin_controller::CheckinController::CheckIn",
+        "kind": "nested"
+      }
+    ]
+  }
+]

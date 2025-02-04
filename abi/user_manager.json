@@ -1,0 +1,259 @@
+[
+  {
+    "type": "impl",
+    "name": "UserManagerImpl",
+    "interface_name": "travio::interfaces::user_manager::IUserManager"
+  },
+  {
+    "type": "struct",
+    "name": "core::integer::u256",
+    "members": [
+      {
+        "name": "low",
+        "type": "core::integer::u128"
+      },
+      {
+        "name": "high",
+        "type": "core::integer::u128"
+      }
+    ]
+  },
+  {
+    "type": "interface",
+    "name": "travio::interfaces::user_manager::IUserManager",
+    "items": [
+      {
+        "type": "function",
+        "name": "set_checkin_controller",
+        "inputs": [
+          {
+            "name": "checkin_controller",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "update_user_points",
+        "inputs": [
+          {
+            "name": "user",
+            "type": "core::starknet::contract_address::ContractAddress"
+          },
+          {
+            "name": "points",
+            "type": "core::integer::u256"
+          },
+          {
+            "name": "sub_points",
+            "type": "core::integer::u256"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "update_user_checkin",
+        "inputs": [
+          {
+            "name": "user",
+            "type": "core::starknet::contract_address::ContractAddress"
+          },
+          {
+            "name": "spot_id",
+            "type": "core::integer::u256"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "update_user_spot_added",
+        "inputs": [
+          {
+            "name": "user",
+            "type": "core::starknet::contract_address::ContractAddress"
+          },
+          {
+            "name": "spot_id",
+            "type": "core::integer::u256"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "get_user_info",
+        "inputs": [
+          {
+            "name": "user",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "(core::integer::u256, core::integer::u256, core::integer::u256)"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_checkin_controller",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "state_mutability": "view"
+      }
+    ]
+  },
+  {
+    "type": "impl",
+    "name": "OwnableImpl",
+    "interface_name": "travio::ownable::IOwnable"
+  },
+  {
+    "type": "interface",
+    "name": "travio::ownable::IOwnable",
+    "items": [
+      {
+        "type": "function",
+        "name": "owner",
+        "inputs": [],
+        "outputs": [
+          {
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "transfer_ownership",
+        "inputs": [
+          {
+            "name": "new",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "external"
+      },
+      {
+        "type": "function",
+        "name": "renounce_ownership",
+        "inputs": [],
+        "outputs": [],
+        "state_mutability": "external"
+      }
+    ]
+  },
+  {
+    "type": "constructor",
+    "name": "constructor",
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "core::starknet::contract_address::ContractAddress"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::ownable::OwnableComponent::OwnershipTransferredEvent",
+    "kind": "struct",
+    "members": [
+      {
+        "name": "previous",
+        "type": "core::starknet::contract_address::ContractAddress",
+        "kind": "data"
+      },
+      {
+        "name": "new",
+        "type": "core::starknet::contract_address::ContractAddress",
+        "kind": "data"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::ownable::OwnableComponent::OwnershipRenouncedEvent",
+    "kind": "struct",
+    "members": [
+      {
+        "name": "previous",
+        "type": "core::starknet::contract_address::ContractAddress",
+        "kind": "data"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::ownable::OwnableComponent::Event",
+    "kind": "enum",
+    "variants": [
+      {
+        "name": "OwnershipTransferredEvent",
+        "type": "travio::ownable::OwnableComponent::OwnershipTransferredEvent",
+        "kind": "nested"
+      },
+      {
+        "name": "OwnershipRenouncedEvent",
+        "type": "travio::ownable::OwnableComponent::OwnershipRenouncedEvent",
+        "kind": "nested"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::user_manager::UserManager::UserPointsUpdated",
+    "kind": "struct",
+    "members": [
+      {
+        "name": "user",
+        "type": "core::starknet::contract_address::ContractAddress",
+        "kind": "data"
+      },
+      {
+        "name": "points",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "sub_points",
+        "type": "core::integer::u256",
+        "kind": "data"
+      },
+      {
+        "name": "total_points",
+        "type": "core::integer::u256",
+        "kind": "data"
+      }
+    ]
+  },
+  {
+    "type": "event",
+    "name": "travio::user_manager::UserManager::Event",
+    "kind": "enum",
+    "variants": [
+      {
+        "name": "OwnableEvent",
+        "type": "travio::ownable::OwnableComponent::Event",
+        "kind": "nested"
+      },
+      {
+        "name": "UserPointsUpdated",
+        "type": "travio::user_manager::UserManager::UserPointsUpdated",
+        "kind": "nested"
+      }
+    ]
+  }
+]
